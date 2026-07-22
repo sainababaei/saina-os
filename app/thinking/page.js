@@ -1,4 +1,43 @@
+import Link from 'next/link';
 import SiteHeader from '@/components/SiteHeader';
-import ArticleCard from '@/components/ArticleCard';
-export const metadata={title:'Thinking',description:'Articles, field notes and frameworks from SAINA OS.'};
-export default function Thinking(){return <><SiteHeader/><main className="wrap pagePad"><div className="eyebrow">Thinking</div><h1 className="pageTitle">Ideas designed to survive the feed.</h1><p className="lead">Browse by article, field note, series or working model. Each piece includes direct answers, sources, related entities and next actions.</p><div className="filterBar"><button>All</button><button>Product</button><button>Strategy</button><button>AI</button><button>Systems</button></div><div className="articleList"><ArticleCard tag="Agentic AI" title="Conversation memory is not organizational learning" summary="How accepted corrections become versioned rules and checks."/><ArticleCard tag="Strategy" title="The end of best practice" summary="Why copied playbooks fail without their hidden assumptions." tone="amber"/><ArticleCard tag="Product" title="Build the system before you scale the team" summary="Growth amplifies structure and also amplifies its absence." tone="lime"/><ArticleCard tag="Field note" title="When product problems are relationship problems" summary="A note on ownership, ambiguity and coordination costs." tone="blue"/></div></main></>}
+import { getAllArticles, estimateReadingTime } from '@/lib/articles';
+
+export const metadata = {
+  title: 'Thinking | SAINA OS',
+  description: 'Working ideas on AI, product strategy, organizational learning and professional relationships.',
+};
+
+export default function Thinking() {
+  const articles = getAllArticles();
+  const featured = articles.find((article) => article.featured) || articles[0];
+  const rest = articles.filter((article) => article.slug !== featured?.slug);
+
+  return <><SiteHeader/><main className="wrap pagePad thinkingPage">
+    <div className="eyebrow">Thinking</div>
+    <h1 className="pageTitle">Ideas are drafts. Systems are conversations.</h1>
+    <p className="lead">A growing collection of essays, frameworks and field notes on AI, product strategy, organizational learning and professional relationships.</p>
+
+    {featured && <section className="thinkingFeatured">
+      <div className="featureArt"></div>
+      <div className="featureBody">
+        <span className="tag">Featured · {featured.category}</span>
+        <h2>{featured.title}</h2>
+        <p>{featured.description}</p>
+        <div className="articleMeta">{featured.date} · {featured.readingTime || estimateReadingTime(featured.content)} min read</div>
+        <Link className="button primary" href={`/thinking/${featured.slug}`}>Read essay</Link>
+      </div>
+    </section>}
+
+    <section className="articleArchive">
+      <div className="sectionHeading"><div><div className="eyebrow">Archive</div><h2>Latest thinking</h2></div><span>{articles.length} pieces</span></div>
+      <div className="articleGrid">
+        {rest.map((article) => <Link className="articleArchiveCard" href={`/thinking/${article.slug}`} key={article.slug}>
+          <div className="articleArchiveTop"><span className="tag">{article.category}</span><span>{article.date}</span></div>
+          <h3>{article.title}</h3>
+          <p>{article.description}</p>
+          <div className="articleArchiveBottom"><span>{article.readingTime || estimateReadingTime(article.content)} min read</span><span>Read →</span></div>
+        </Link>)}
+      </div>
+    </section>
+  </main></>;
+}

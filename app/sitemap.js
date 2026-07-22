@@ -1,1 +1,7 @@
-export default function sitemap(){const base=process.env.NEXT_PUBLIC_SITE_URL||'https://sainababaei.com';return ['','/thinking','/thinking/article','/join'].map((path)=>({url:base+path,lastModified:new Date(),changeFrequency:path===''?'weekly':'monthly',priority:path===''?1:.7}))}
+import { getAllArticles } from '@/lib/articles';
+export default function sitemap(){
+ const base='https://sainababaei.com';
+ const staticRoutes=['','/thinking','/join','/member'].map((route)=>({url:`${base}${route}`,lastModified:new Date()}));
+ const articles=getAllArticles().map((article)=>({url:`${base}/thinking/${article.slug}`,lastModified:new Date(article.updated||article.date)}));
+ return [...staticRoutes,...articles];
+}

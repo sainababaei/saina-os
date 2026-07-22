@@ -1,19 +1,28 @@
-# SAINA OS v2
+# SAINA OS — Thinking Foundation
 
-Production-ready public and prototype application shell for SAINA OS.
+Production-ready Next.js foundation for sainababaei.com.
 
 ## Included
-- Public home, Thinking index, article and join/booking flow
-- Member dynamic identity, journey, feedback, resources and matchmaking
-- Admin People/CRM, Editorial SEO-AEO-GEO studio and agent boundaries
-- Dynamic sitemap, robots and Article structured data
-- Supabase starter schema
+- Home page connected to the featured essay
+- Markdown-based content system in `content/articles`
+- 10 launch essays
+- Dynamic article routes at `/thinking/[slug]`
+- Article metadata, canonical URLs and Article JSON-LD
+- Related articles and conversion CTAs
+- Dynamic sitemap including every published essay
+- Responsive editorial layout
 
-## Deploy
-1. Upload the contents of this folder to the `saina-os` GitHub repository.
-2. Import the repository into Vercel as a Next.js project.
-3. No environment variables are required for the static launch.
-4. Add `NEXT_PUBLIC_SITE_URL=https://sainababaei.com` before connecting the final domain.
+## Publishing a new article
+1. Duplicate a file in `content/articles`.
+2. Change the frontmatter and body.
+3. Commit and push to `main`.
+4. Vercel automatically rebuilds and publishes the article.
 
-## Supabase phase
-Copy `.env.example` to `.env.local`, add Supabase values and run `supabase/schema.sql` in the Supabase SQL Editor.
+## Local run
+```bash
+npm install
+npm run dev
+```
+
+## Production
+Vercel should use the repository root. No environment variables are required for this content-only release.

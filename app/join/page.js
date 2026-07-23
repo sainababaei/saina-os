@@ -163,6 +163,3 @@ export default function Join() {
     </>
   );
 }
-import Link from 'next/link';import SiteHeader from '@/components/SiteHeader';
-export const metadata={title:'Join or book a session'};
-export default function Join(){return <><SiteHeader/><main className="wrap pagePad narrow"><div className="eyebrow">Start simply</div><h1 className="pageTitle">How would you like to begin?</h1><div className="choiceCards"><div className="choiceCard"><h3>Book a focused session</h3><p>Product, business, operating system or pitch deck support.</p></div><div className="choiceCard"><h3>Join an event</h3><p>Apply for a high-context working room or community session.</p></div><div className="choiceCard"><h3>Create a simple account</h3><p>Save ideas and manage bookings without building a full profile.</p></div><div className="choiceCard"><h3>Activate dynamic identity</h3><p>Opt into evidence, feedback, resources and professional growth.</p></div></div><form className="panel joinForm"><label>Name</label><input placeholder="Your name"/><label>Phone or email</label><input placeholder="Your preferred contact"/><label>What brings you here?</label><textarea rows="5" placeholder="Product, business, pitch deck, event, community..."/><Link className="button primary" href="/member">Continue to member preview</Link></form></main></>}

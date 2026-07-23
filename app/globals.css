@@ -327,3 +327,38 @@
     aspect-ratio: 3 / 2;
   }
 }
+/* Fix featured covers only */
+
+.feature > img.featureArt {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 3 / 2 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  background: #080b0a;
+}
+
+.thinkingFeatured {
+  align-items: center;
+  background: #080b0a;
+}
+
+.thinkingFeatured > img.featureArt {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 3 / 2 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  background: #080b0a;
+}
+
+.thinkingFeatured .featureBody {
+  height: 100%;
+  background: #fff;
+}

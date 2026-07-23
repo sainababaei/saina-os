@@ -362,3 +362,50 @@
   height: 100%;
   background: #fff;
 }
+/* One consistent article cover system */
+
+.feature > img,
+.thinkingFeatured > img,
+.articleCard > img,
+.articleArchiveCard > img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+  background: #080b0a !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Homepage small cards keep image and text side by side */
+.articleCard {
+  display: grid !important;
+  grid-template-columns: 42% 58% !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  align-items: stretch !important;
+}
+
+.articleCard > img {
+  height: 100% !important;
+  aspect-ratio: auto !important;
+}
+
+/* Featured layouts */
+.feature,
+.thinkingFeatured {
+  overflow: hidden !important;
+}
+
+@media (max-width: 620px) {
+  .articleCard {
+    grid-template-columns: 1fr !important;
+  }
+
+  .articleCard > img {
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+}

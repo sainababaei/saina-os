@@ -247,3 +247,40 @@
     aspect-ratio:16/9;
   }
 }
+/* Final cover size correction */
+
+.feature > img.featureArt,
+.thinkingFeatured > img.featureArt{
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  aspect-ratio:3 / 2 !important;
+  object-fit:cover !important;
+  display:block;
+  background:#080b0a;
+}
+
+.articleArchiveCard > img{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:3 / 2 !important;
+  object-fit:cover !important;
+  display:block;
+}
+
+.articleCard > img{
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  aspect-ratio:3 / 2 !important;
+  object-fit:cover !important;
+  display:block;
+}
+
+@media(max-width:900px){
+  .feature > img.featureArt,
+  .thinkingFeatured > img.featureArt{
+    aspect-ratio:3 / 2 !important;
+    height:auto !important;
+  }
+}

@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 function getInitials(name) {
   return name
-    .split(/s+/)
+    .split(/\s+/)
     .filter(Boolean)
     .slice(0, 2)
     .map((part) => part[0])
@@ -110,7 +110,3 @@ export default async function People() {
     </AppShell>
   );
 }
-import AppShell from '@/components/AppShell';
-export const metadata={title:'Admin people'};
-const people=[['AR','Arman Rezaei','Lead · phone only · event interest','Follow up'],['NS','Niloofar Shahri','Profile active · product operator','Member'],['MK','Mehdi Karimi','Client · pitch deck engagement','Active']];
-export default function People(){return <AppShell title="Admin · People & relationships" eyebrow="Relationship OS"><div className="grid3"><div className="panel"><div className="muted">Leads</div><div className="metric">42</div><small>Phone/basic contact only</small></div><div className="panel"><div className="muted">Contacts</div><div className="metric">28</div><small>Profile or richer context</small></div><div className="panel"><div className="muted">Clients</div><div className="metric">11</div><small>Active working relationship</small></div></div><div className="panel spaceTop"><div className="filterBar"><button>All</button><button>Leads</button><button>Contacts</button><button>Profiles</button><button>Clients</button></div>{people.map(p=><div className="person" key={p[1]}><div className="personMain"><div className="initial">{p[0]}</div><div><b>{p[1]}</b><div className="muted">{p[2]}</div></div></div><span className="tag">{p[3]}</span></div>)}</div><div className="grid2 spaceTop"><div className="panel"><h3>Selected person · Niloofar</h3><label>Private meeting note</label><textarea rows="5" defaultValue="Strong systems intuition. Needs clearer execution ownership."/><button className="button primary">Save note</button></div><div className="panel"><h3>Observed capabilities</h3><div className="chips"><span>Systems thinking</span><span>Product judgment</span></div><label>Propose profile feedback</label><textarea rows="5" defaultValue="You consistently separate structural problems from feature-level symptoms."/><button className="button secondary">Send for member consent</button></div></div></AppShell>}

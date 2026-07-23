@@ -249,17 +249,28 @@
 }
 /* Final cover size correction */
 
-.feature > img.featureArt,
-.thinkingFeatured > img.featureArt{
+/* عکس بزرگ صفحه اصلی */
+.feature > img.featureArt{
   width:100% !important;
   height:auto !important;
   min-height:0 !important;
   aspect-ratio:3 / 2 !important;
-  object-fit:cover !important;
+  object-fit:contain !important;
   display:block;
   background:#080b0a;
 }
 
+/* عکس بزرگ صفحه Thinking */
+.thinkingFeatured > img.featureArt{
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  object-fit:contain !important;
+  display:block;
+  background:#080b0a;
+}
+
+/* عکس کارت‌های آرشیو */
 .articleArchiveCard > img{
   width:100% !important;
   height:auto !important;
@@ -268,19 +279,19 @@
   display:block;
 }
 
+/* سه کارت کوچک صفحه اصلی */
 .articleCard > img{
   width:100% !important;
-  height:auto !important;
+  height:100% !important;
   min-height:0 !important;
-  aspect-ratio:3 / 2 !important;
-  object-fit:cover !important;
+  object-fit:contain !important;
   display:block;
+  background:#080b0a;
 }
 
 @media(max-width:900px){
-  .feature > img.featureArt,
   .thinkingFeatured > img.featureArt{
-    aspect-ratio:3 / 2 !important;
     height:auto !important;
+    aspect-ratio:3 / 2 !important;
   }
 }

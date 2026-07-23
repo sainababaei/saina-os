@@ -249,61 +249,81 @@
 }
 /* Final cover size correction */
 
-/* عکس بزرگ صفحه اصلی */
-.feature > img.featureArt{
-  width:100% !important;
-  height:auto !important;
-  min-height:0 !important;
-  aspect-ratio:3 / 2 !important;
-  object-fit:contain !important;
-  display:block;
-  background:#080b0a;
+/* Homepage featured cover */
+.feature > img.featureArt {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #080b0a;
 }
 
-/* عکس بزرگ صفحه Thinking */
-.thinkingFeatured > img.featureArt{
-  width:100% !important;
-  height:100% !important;
-  min-height:0 !important;
-  object-fit:contain !important;
-  display:block;
-  background:#080b0a;
+/* Thinking page featured cover */
+.thinkingFeatured > img.featureArt {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #080b0a;
 }
 
-/* عکس کارت‌های آرشیو */
-.articleArchiveCard > img{
-  width:100% !important;
-  height:auto !important;
-  aspect-ratio:3 / 2 !important;
-  object-fit:cover !important;
-  display:block;
+/* Thinking archive covers */
+.articleArchiveCard > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  background: #080b0a;
 }
 
-/* سه کارت کوچک صفحه اصلی */
-.articleCard > img{
-  width:100% !important;
-  height:100% !important;
-  min-height:0 !important;
-  object-fit:contain !important;
-  display:block;
-  background:#080b0a;
+/* Homepage small article cards */
+.articleCard {
+  display: grid;
+  grid-template-columns: 44% 1fr;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  align-items: stretch;
 }
 
-@media(max-width:900px){
-  .thinkingFeatured > img.featureArt{
-    height:auto !important;
-    aspect-ratio:3 / 2 !important;
+.articleCard > img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #080b0a;
+}
+
+.articleCard > div {
+  min-width: 0;
+  padding: 16px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .thinkingFeatured > img.featureArt {
+    height: auto;
+    aspect-ratio: 3 / 2;
   }
 }
-/* Fix homepage small article images only */
 
-.articleCard > img{
-  width:100% !important;
-  height:100% !important;
-  min-height:0 !important;
-  aspect-ratio:auto !important;
-  object-fit:cover !important;
-  object-position:center !important;
-  display:block;
-  background:#080b0a;
+@media (max-width: 620px) {
+  .articleCard {
+    grid-template-columns: 1fr;
+  }
+
+  .articleCard > img {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
 }

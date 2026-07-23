@@ -13,6 +13,7 @@ const initialForm = {
 
 export default function Join() {
   const router = useRouter();
+
   const [form, setForm] = useState(initialForm);
   const [submission, setSubmission] = useState({
     status: 'idle',
@@ -24,11 +25,11 @@ export default function Join() {
 
   function updateField(event) {
     const { name, value } = event.target;
-    setForm((current) => ({ ...current, [name]: value }));
 
-    if (submission.status === 'error') {
-      setSubmission({ status: 'idle', message: '' });
-    }
+    setForm((current) => ({
+      ...current,
+      [name]: value,
+    }));
   }
 
   async function handleSubmit(event) {
@@ -46,11 +47,15 @@ export default function Join() {
       return;
     }
 
-    setSubmission({ status: 'loading', message: 'Submitting your request…' });
+    setSubmission({
+      status: 'loading',
+      message: 'Submitting your request…',
+    });
 
     try {
       const supabase = getSupabaseClient();
       const isEmail = contact.includes('@');
+
       const { error } = await supabase.from('people').insert({
         full_name: fullName,
         email: isEmail ? contact : null,
@@ -65,13 +70,15 @@ export default function Join() {
 
       setSubmission({
         status: 'success',
-        message: 'Request received. Redirecting to the member preview…',
+        message: 'Request received.',
       });
 
-      window.setTimeout(() => {
+      setTimeout(() => {
         router.replace('/member');
       }, 800);
-    } catch {
+    } catch (error) {
+      console.error(error);
+
       setSubmission({
         status: 'error',
         message: 'We could not submit your request. Please try again.',
@@ -82,22 +89,36 @@ export default function Join() {
   return (
     <>
       <SiteHeader />
+
       <main className="wrap pagePad narrow">
         <div className="eyebrow">Start simply</div>
-        <h1 className="pageTitle">How would you like to begin?</h1>
+
+        <h1 className="pageTitle">
+          How would you like to begin?
+        </h1>
+
         <div className="choiceCards">
           <div className="choiceCard">
             <h3>Book a focused session</h3>
-            <p>Product, business, operating system or pitch deck support.</p>
+            <p>
+              Product, business, operating system or pitch deck support.
+            </p>
           </div>
+
           <div className="choiceCard">
             <h3>Join an event</h3>
-            <p>Apply for a high-context working room or community session.</p>
+            <p>
+              Apply for a high-context working room or community session.
+            </p>
           </div>
+
           <div className="choiceCard">
             <h3>Create a simple account</h3>
-            <p>Save ideas and manage bookings without building a full profile.</p>
+            <p>
+              Save ideas and manage bookings without building a full profile.
+            </p>
           </div>
+
           <div className="choiceCard">
             <h3>Activate dynamic identity</h3>
             <p>
@@ -105,20 +126,29 @@ export default function Join() {
             </p>
           </div>
         </div>
-        <form className="panel joinForm" onSubmit={handleSubmit} noValidate>
-          <label htmlFor="full_name">Name</label>
+
+        <form
+          className="panel joinForm"
+          onSubmit={handleSubmit}
+        >
+          <label htmlFor="full_name">
+            Name
+          </label>
+
           <input
             id="full_name"
             name="full_name"
             value={form.full_name}
             onChange={updateField}
             placeholder="Your name"
-            autoComplete="name"
             required
             disabled={isSubmitting || hasSucceeded}
           />
 
-          <label htmlFor="contact">Phone or email</label>
+          <label htmlFor="contact">
+            Phone or email
+          </label>
+
           <input
             id="contact"
             name="contact"
@@ -129,7 +159,10 @@ export default function Join() {
             disabled={isSubmitting || hasSucceeded}
           />
 
-          <label htmlFor="intent">What brings you here?</label>
+          <label htmlFor="intent">
+            What brings you here?
+          </label>
+
           <textarea
             id="intent"
             name="intent"
@@ -146,15 +179,13 @@ export default function Join() {
             type="submit"
             disabled={isSubmitting || hasSucceeded}
           >
-            {isSubmitting ? 'Submitting…' : 'Continue to member preview'}
+            {isSubmitting
+              ? 'Submitting…'
+              : 'Continue to member preview'}
           </button>
 
           {submission.message ? (
-            <p
-              className="muted"
-              role={submission.status === 'error' ? 'alert' : 'status'}
-              aria-live="polite"
-            >
+            <p className="muted">
               {submission.message}
             </p>
           ) : null}

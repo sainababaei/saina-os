@@ -71,3 +71,35 @@
     grid-template-columns:1fr;
   }
 }
+/* Fix article cover sizing */
+
+.feature > img.featureArt,
+.thinkingFeatured > img.featureArt{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  background:#080b0a;
+  display:block;
+}
+
+/* Homepage small article cards */
+
+.articleCard{
+  grid-template-columns:42% 1fr;
+  padding:0;
+  overflow:hidden;
+  align-items:stretch;
+}
+
+.articleCard > img{
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  object-fit:contain !important;
+  background:#080b0a;
+  display:block;
+}
+
+.articleCard > div{
+  padding:14px;
+}
